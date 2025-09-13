@@ -698,7 +698,7 @@ namespace {
               break;
             }
           }
-          CFRelease(windowList);
+          CFRelease(visibleWindowList);
         }
         if (!windowIDVisible) {
           if (!(SDL_GetWindowFlags(window) & SDL_WINDOW_HIDDEN)) {
