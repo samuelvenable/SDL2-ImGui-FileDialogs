@@ -434,7 +434,7 @@ namespace {
           if (e.type == SDL_MOUSEBUTTONDOWN) {
             int w = 0, h = 0;
             SDL_GetMouseState(&startmx, &startmy);
-            if (SDL_GetRendererOutputSize(SDL_GetRenderer(window), &w, &h)) {
+            if (!SDL_GetRendererOutputSize(SDL_GetRenderer(window), &w, &h)) {
               if (startmx >= 0 && startmx <= w && startmy >= 0 && startmy <= 30) {
                 mousedrag = true;
               }
