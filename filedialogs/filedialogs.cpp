@@ -268,7 +268,7 @@ namespace {
   SDL_Surface *surf = nullptr;
   ImFontAtlas *shared_font_atlas = nullptr;
   bool mousedrag = false;
-  float startmx = 0, startmy = 0;
+  int startmx = 0, startmy = 0;
   int xoffset = 0, yoffset = 0;
   int startx = 0, starty = 0;
 
@@ -434,14 +434,14 @@ namespace {
           if (e.type == SDL_MOUSEBUTTONDOWN) {
             int w = 0, h = 0;
             SDL_GetMouseState(&startmx, &startmy);
-            if (SDL_GetCurrentRenderOutputSize(SDL_GetRenderer(window), &w, &h)) {
+            if (SDL_GetRendererOutputSize(SDL_GetRenderer(window), &w, &h)) {
               if (startmx >= 0 && startmx <= w && startmy >= 0 && startmy <= 30) {
                 mousedrag = true;
               }
             }
           }
           if (mousedrag) {
-            float gmx = 0, gmy = 0;
+            int gmx = 0, gmy = 0;
             SDL_GetGlobalMouseState(&gmx, &gmy);
             xoffset = startx + startmx - gmx;
             yoffset = starty + startmy - gmy; 
