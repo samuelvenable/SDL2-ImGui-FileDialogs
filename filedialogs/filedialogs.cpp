@@ -305,15 +305,13 @@ namespace {
     SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0");
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "2");
     SDL_WindowFlags windowFlags = (SDL_WindowFlags)(
-    ((ngs::fs::environment_get_variable("IMGUI_DIALOG_FULLSCREEN").empty()) ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0) |
+    ((ngs::fs::environment_get_variable("IMGUI_DIALOG_FULLSCREEN") == std::to_string(1)) ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0) |
     ((ngs::fs::environment_get_variable("IMGUI_DIALOG_PARENT").empty()) ? SDL_WINDOW_ALWAYS_ON_TOP : 0) |
     SDL_WINDOW_SKIP_TASKBAR | SDL_WINDOW_HIDDEN | SDL_WINDOW_BORDERLESS);
     window = SDL_CreateWindow(title.c_str(),
     SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, IFD_DIALOG_WIDTH, IFD_DIALOG_HEIGHT, windowFlags);
     if (window == nullptr) return "";
     dialog = window;
-    if (ngs::fs::environment_get_variable("IMGUI_DIALOG_FULLSCREEN") == std::to_string(1))
-    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
     if (renderer == nullptr) return "";
     SDL_RendererInfo rendererInfo;
