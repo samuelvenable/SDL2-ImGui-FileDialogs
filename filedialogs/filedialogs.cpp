@@ -305,6 +305,7 @@ namespace {
     SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0");
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "2");
     SDL_WindowFlags windowFlags = (SDL_WindowFlags)(
+    ((ngs::fs::environment_get_variable("IMGUI_DIALOG_FULLSCREEN").empty()) ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0) |
     ((ngs::fs::environment_get_variable("IMGUI_DIALOG_PARENT").empty()) ? SDL_WINDOW_ALWAYS_ON_TOP : 0) |
     SDL_WINDOW_SKIP_TASKBAR | SDL_WINDOW_HIDDEN | SDL_WINDOW_BORDERLESS);
     window = SDL_CreateWindow(title.c_str(),
