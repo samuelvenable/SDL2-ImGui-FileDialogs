@@ -109,7 +109,7 @@ int ImGuiAl::MsgBox::Draw() {
       }
     }
     #endif
-    ImGui::TextWrapped(strlen(m_Text) ? m_Text : text.c_str());
+    ImGui::TextWrapped(!text.empty() ? text.c_str() : m_Text);
     int sw = 0, sh = 0;
     int dw = ImGui::CalcTextSize(m_Text, m_Text + strlen(m_Text), false, 100 * (0.25 * ImGui::GetFontSize())).x;
     if (dw < ImGui::GetWindowContentRegionMax().x * 0.75) dw = ImGui::GetWindowContentRegionMax().x * 0.75;
