@@ -79,12 +79,11 @@ std::string string_receive() {
   }
   CloseHandle(hPipe);
   #else
-  char buffer[BUFFER_SIZE];
   int fd = open("/tmp/IMGUI_DIALOG_PIPE", O_RDONLY);
   if (fd == -1) {
     return "";
   }
-  ssize_t nRead = 0; 
+  ssize_t nRead = 0;
   char buffer[BUFSIZ];
   while ((nRead = read(fd, buffer, BUFSIZ)) > 0) {
     buffer[nRead] = '\0';
