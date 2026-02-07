@@ -10,3 +10,4 @@ if [ `uname` = "Darwin" ]; then
 else
   "./filedialogs/build.sh";
 fi
+ 
