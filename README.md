@@ -108,12 +108,6 @@ int main() {
 
 Supports Windows, macOS, Linux, FreeBSD, DragonFly BSD, NetBSD, OpenBSD, and SunOS.
 
-![win32.png](win32.png)
-
-![macos.png](macos.png)
-
-![linux.png](linux.png)
-
 **Build Dependencies:**
 - Windows: MSYS2, MinGW, pacman, g++, make, pkg-config, sdl2
 - macOS: Xcode command line tools, MacPorts, clang++, make, sdl2
@@ -123,6 +117,24 @@ Supports Windows, macOS, Linux, FreeBSD, DragonFly BSD, NetBSD, OpenBSD, and Sun
 - NetBSD: g++, make, sdl2, x11, gtk+3.0, gio2.0, glib2.0, pkg-config, cmake
 - OpenBSD: clang++, make, sdl2, x11, gtk+3.0, gio2.0, glib2.0, pkg-config, cmake
 - SunOS: g++, make, sdl2, x11, gtk+3.0, gio2.0, glib2.0, pkg-config, cmake
+
+![screenshot0.png](screenshots/screenshot0.png)
+
+![screenshot1.png](screenshots/screenshot1.png)
+
+![screenshot2.png](screenshots/screenshot2.png)
+
+![screenshot3.png](screenshots/screenshot3.png)
+
+![screenshot4.png](screenshots/screenshot4.png)
+
+![screenshot5.png](screenshots/screenshot5.png)
+
+![screenshot6.png](screenshots/screenshot6.png)
+
+![screenshot7.png](screenshots/screenshot7.png)
+
+![screenshot8.png](screenshots/screenshot8.png)
 
 
 
