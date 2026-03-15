@@ -694,10 +694,9 @@ namespace {
     finish:
     #if defined(_WIN32)
     if (!ngs::fs::environment_get_variable("IMGUI_DIALOG_PARENT").empty() &&
-      ngs::fs::environment_get_variable("IMGUI_DIALOG_EMBEDDED") != std::to_string(1)) {
-      EnableWindow((HWND)(void *)(std::uintptr_t)strtoull(
-      ngs::fs::environment_get_variable("IMGUI_DIALOG_PARENT").c_str(), nullptr, 10), true);
-    }
+    ngs::fs::environment_get_variable("IMGUI_DIALOG_EMBEDDED") != std::to_string(1))
+    EnableWindow((HWND)(void *)(std::uintptr_t)strtoull(
+    ngs::fs::environment_get_variable("IMGUI_DIALOG_PARENT").c_str(), nullptr, 10), true);
     #elif (defined(__APPLE__) && defined(__MACH__))
     if (!ngs::fs::environment_get_variable("IMGUI_DIALOG_PARENT").empty()) {
       [[(NSWindow *)(void *)(std::uintptr_t)strtoull(
@@ -711,9 +710,6 @@ namespace {
     SDL_DestroyWindow(window);
     dialog = nullptr;
     window = nullptr;
-    #if defined(_WIN32)
-    hWnd = nullptr;
-    #endif
     return result;
   }
 
