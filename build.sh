@@ -1,5 +1,6 @@
 #!/bin/sh
 cd "${0%/*}";
+chmod u+x "./filedialogs/build.sh";
 if [ `uname` = "Darwin" ]; then
   sudo xcode-select --install;
   if [ -f "/opt/local/bin/port" ]; then
