@@ -2,11 +2,15 @@
 cd "${0%/*}"
 
 # build command line executable
-if [ `uname` = "Darwin" ]; then
+if [ $(uname -o) = "Msys" ]; then
+  windres "resources.rc" -o "resources.o" -I.;
+  g++ "ImFileDialog/ImFileDialog.cpp" "imgui/imgui.cpp" "imgui/imgui_impl_sdl2.cpp" "imgui/imgui_impl_sdlrenderer2.cpp" "imgui/imgui_draw.cpp" "imgui/imgui_tables.cpp" "imgui/imgui_widgets.cpp" "apifilesystem/filesystem.cpp" "apifiledialogs/filedialogs.cpp" "msgbox/imguial_msgbox.cpp" "main.cpp" "resources.o" -o "filedialogs.exe" -std=c++17 -I. -D_UNICODE -DUNICODE -DIMGUI_USE_WCHAR32 -static-libgcc -static-libstdc++ -static `pkg-config --cflags --libs sdl2 --static` -lshell32 -mconsole -fPIC;
+  rm -f "resources.o";
+elif [ `uname` = "Darwin" ]; then
   sudo port install libsdl2 +universal;
   clang++ "/opt/local/lib/libSDL2.a" "ImFileDialog/ImFileDialog.cpp" "imgui/imgui.cpp" "imgui/imgui_impl_sdl2.cpp" "imgui/imgui_impl_sdlrenderer2.cpp" "imgui/imgui_draw.cpp" "imgui/imgui_tables.cpp" "imgui/imgui_widgets.cpp" "apifilesystem/filesystem.cpp" "apifiledialogs/filedialogs.cpp" "msgbox/imguial_msgbox.cpp" "main.cpp" -o "filedialogs" -std=c++17 -Wno-format-security -I. -DIMGUI_USE_WCHAR32 -I/opt/local/include -I/opt/local/include/SDL2 -ObjC++ -liconv -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-weak_framework,CoreHaptics -Wl,-weak_framework,GameController -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,CoreVideo -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit -Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal -fPIC -arch arm64 -arch x86_64 -fPIC;
   cp -f "filedialogs" "../filedialogs.app/Contents/MacOS/filedialogs";
-elif [ $(uname) = "Linux" ]; then
+elif [ $(uname -o) = "GNU/Linux" ]; then
   cd "lunasvg";
   rm -f "CMakeCache.txt";
   cmake .;
@@ -49,16 +53,14 @@ elif [ $(uname) = "SunOS" ]; then
   cd ..;
   export PKG_CONFIG_PATH=/usr/lib/64/pkgconfig;
   g++ "ImFileDialog/ImFileDialog.cpp" "imgui/imgui.cpp" "imgui/imgui_impl_sdl2.cpp" "imgui/imgui_impl_sdlrenderer2.cpp" "imgui/imgui_draw.cpp" "imgui/imgui_tables.cpp" "imgui/imgui_widgets.cpp" "apifilesystem/filesystem.cpp" "apifiledialogs/filedialogs.cpp" "msgbox/imguial_msgbox.cpp" "main.cpp" -o "filedialogs" -std=c++17 -Wno-format-security -I. -Ilunasvg/include "lunasvg/liblunasvg.a" "lunasvg/plutovg/libplutovg.a" -DIMGUI_USE_WCHAR32 -static-libgcc `pkg-config --cflags --libs sdl2` `pkg-config --cflags --libs gtk+-3.0` `pkg-config --cflags --libs gio-2.0` `pkg-config --cflags --libs glib-2.0` `pkg-config --cflags --libs x11` -lc -lpthread -fPIC;
-else
-  windres "resources.rc" -o "resources.o" -I.;
-  g++ "ImFileDialog/ImFileDialog.cpp" "imgui/imgui.cpp" "imgui/imgui_impl_sdl2.cpp" "imgui/imgui_impl_sdlrenderer2.cpp" "imgui/imgui_draw.cpp" "imgui/imgui_tables.cpp" "imgui/imgui_widgets.cpp" "apifilesystem/filesystem.cpp" "apifiledialogs/filedialogs.cpp" "msgbox/imguial_msgbox.cpp" "main.cpp" "resources.o" -o "filedialogs.exe" -std=c++17 -I. -D_UNICODE -DUNICODE -DIMGUI_USE_WCHAR32 -static-libgcc -static-libstdc++ -static `pkg-config --cflags --libs sdl2 --static` -lshell32 -mconsole -fPIC;
-  rm -f "resources.o";
-fi
+fi;
 
 # build shared library
-if [ `uname` = "Darwin" ]; then
+if [ $(uname -o) = "Msys" ]; then
+  g++ "ImFileDialog/ImFileDialog.cpp" "imgui/imgui.cpp" "imgui/imgui_impl_sdl2.cpp" "imgui/imgui_impl_sdlrenderer2.cpp" "imgui/imgui_draw.cpp" "imgui/imgui_tables.cpp" "imgui/imgui_widgets.cpp" "apifilesystem/filesystem.cpp" "apifiledialogs/filedialogs.cpp" "msgbox/imguial_msgbox.cpp" -o "libfiledialogs.dll" -std=c++17 -shared -I. -D_UNICODE -DUNICODE -DIMGUI_USE_WCHAR32 -static-libgcc -static-libstdc++ -static `pkg-config --cflags --libs sdl2 --static` -lshell32 -fPIC;
+elif [ `uname` = "Darwin" ]; then
   clang++ "/opt/local/lib/libSDL2.a" "ImFileDialog/ImFileDialog.cpp" "imgui/imgui.cpp" "imgui/imgui_impl_sdl2.cpp" "imgui/imgui_impl_sdlrenderer2.cpp" "imgui/imgui_draw.cpp" "imgui/imgui_tables.cpp" "imgui/imgui_widgets.cpp" "apifilesystem/filesystem.cpp" "apifiledialogs/filedialogs.cpp" "msgbox/imguial_msgbox.cpp" -o "libfiledialogs.dylib" -std=c++17 -shared -Wno-format-security -I. -DIMGUI_USE_WCHAR32 -I/opt/local/include -I/opt/local/include/SDL2 -ObjC++ -liconv -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-weak_framework,CoreHaptics -Wl,-weak_framework,GameController -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,CoreVideo -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit -Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal -fPIC -arch arm64 -arch x86_64 -fPIC;
-elif [ $(uname) = "Linux" ]; then
+elif [ $(uname -o) = "GNU/Linux" ]; then
   cd "lunasvg";
   rm -f "CMakeCache.txt";
   cmake .;
@@ -101,6 +103,4 @@ elif [ $(uname) = "SunOS" ]; then
   cd ..;
   export PKG_CONFIG_PATH=/usr/lib/64/pkgconfig;
   g++ "ImFileDialog/ImFileDialog.cpp" "imgui/imgui.cpp" "imgui/imgui_impl_sdl2.cpp" "imgui/imgui_impl_sdlrenderer2.cpp" "imgui/imgui_draw.cpp" "imgui/imgui_tables.cpp" "imgui/imgui_widgets.cpp" "apifilesystem/filesystem.cpp" "apifiledialogs/filedialogs.cpp" "msgbox/imguial_msgbox.cpp" -o "libfiledialogs.so" -std=c++17 -shared -Wno-format-security -I. -Ilunasvg/include "lunasvg/liblunasvg.a" "lunasvg/plutovg/libplutovg.a" -DIMGUI_USE_WCHAR32 -static-libgcc `pkg-config --cflags --libs sdl2` `pkg-config --cflags --libs gtk+-3.0` `pkg-config --cflags --libs gio-2.0` `pkg-config --cflags --libs glib-2.0` `pkg-config --cflags --libs x11` -lc -lpthread -fPIC;
-else
-  g++ "ImFileDialog/ImFileDialog.cpp" "imgui/imgui.cpp" "imgui/imgui_impl_sdl2.cpp" "imgui/imgui_impl_sdlrenderer2.cpp" "imgui/imgui_draw.cpp" "imgui/imgui_tables.cpp" "imgui/imgui_widgets.cpp" "apifilesystem/filesystem.cpp" "apifiledialogs/filedialogs.cpp" "msgbox/imguial_msgbox.cpp" -o "libfiledialogs.dll" -std=c++17 -shared -I. -D_UNICODE -DUNICODE -DIMGUI_USE_WCHAR32 -static-libgcc -static-libstdc++ -static `pkg-config --cflags --libs sdl2 --static` -lshell32 -fPIC;
-fi
+fi;
