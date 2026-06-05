@@ -7,7 +7,7 @@ if [ `uname` = "Darwin" ]; then
     "./filedialogs/build.sh";
   else
     echo "MacPorts installation not found! Please download and install MacPorts first from www.macports.org";
-  fi
+  fi;
 else
   "./filedialogs/build.sh";
 fi;
