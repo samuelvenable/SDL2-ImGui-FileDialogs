@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 17)
 project(filedialogs)
+set_target_properties(filedialogs PROPERTIES OUTPUT_NAME "filedialogs")
 find_package(PkgConfig REQUIRED)
 if(IFD_USE_BASIC_ICONS)
 	add_compile_definitions(IFD_USE_BASIC_ICONS)
