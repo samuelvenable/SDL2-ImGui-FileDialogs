@@ -50,8 +50,8 @@ else()
 		source/imgui/imgui.cpp
 		source/imgui/imgui_demo.cpp
 		source/imgui/imgui_draw.cpp
-		source/imgui/imgui_impl_sdl3.cpp
-		source/imgui/imgui_impl_sdlrenderer3.cpp
+		source/imgui/imgui_impl_sdl2.cpp
+		source/imgui/imgui_impl_sdlrenderer2.cpp
 		source/imgui/imgui_tables.cpp
 		source/imgui/imgui_widgets.cpp
 		source/msgbox/imguial_msgbox.cpp
