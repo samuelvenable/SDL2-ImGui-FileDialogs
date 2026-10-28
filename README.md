@@ -142,4 +142,5 @@ Ubuntu:
 - To build this project as the Client Library instead of the CLI, pass `-DIFD_USE_LIBRARY_BUILD=ON` to CMake.
 - CMake defaults to a Static Library build. To build a Shared Library, pass `-DBUILD_SHARED_LIBS=ON` to CMake.
 - For the SDL3 equivalent of this project, see my [SDL3-ImGui-FileDialogs](https://github.com/samuelvenable/SDL3-ImGui-FileDialogs) repository, (also on hosted on GitHub).
+- For an example which uses OpenGL and GLEW instead of SDL Renderer, see [my fork of ImFileDialog](https://github.com/samuelvenable/ImFileDialog).
 
