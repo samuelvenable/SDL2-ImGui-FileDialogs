@@ -436,9 +436,6 @@ namespace {
       #else
       std::string fonts_path = ngs::fs::environment_expand_variables("${IMGUI_CONFIG_HOME}/.config/${IMGUI_CONFIG_FOLDER}/fonts");
       #endif
-      if (ngs::fs::environment_get_variable("IMGUI_FONT_PATH").empty()) {
-        ngs::fs::environment_set_variable("IMGUI_FONT_PATH", fonts_path);
-      }
       if (ngs::fs::environment_get_variable("IMGUI_FONT_SIZE").empty())
       ngs::fs::environment_set_variable("IMGUI_FONT_SIZE", std::to_string(20));
       ImFontConfig config;
