@@ -198,7 +198,7 @@ namespace {
     numberInputBox
   };
 
-  void extract_embedded_license_text_for_fontst_embedded_license_text_for_fonts() {
+  void extract_embedded_license_text_for_fonts() {
     std::error_code ec;
     #if defined(_WIN32)
     string parent_path = ngs::fs::environment_expand_variables("${IMGUI_CONFIG_HOME}\\.config\\${IMGUI_CONFIG_FOLDER}\\fonts");
@@ -433,7 +433,7 @@ namespace {
     #endif
     io.IniFilename = ((!ini.empty()) ? ini.c_str() : nullptr);
     if (ngs::fs::environment_get_variable("IMGUI_FONT_LOADED") != std::to_string(1)) {
-      extract_embedded_license_text_for_fontst_embedded_files();
+      extract_embedded_license_text_for_fonts();
       if (ngs::fs::environment_get_variable("IMGUI_FONT_SIZE").empty())
       ngs::fs::environment_set_variable("IMGUI_FONT_SIZE", std::to_string(20));
       ImFontConfig config;
