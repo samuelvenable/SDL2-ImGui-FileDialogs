@@ -471,15 +471,15 @@ namespace {
           if (FcPatternGetString(font, FC_FAMILY, 0, &family) == FcResultMatch &&
             FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch) {
             FcPatternGetInteger(font, FC_INDEX, 0, &index);
-          std::string familyStr((const char *)family);
-          std::string fileStr((const char *)file);
-          if (familyStr.rfind("Noto Sans", 0) == 0 &&
-            fileStr.find("Regular") != std::string::npos &&
-            familyStr.find("Emoji") == std::string::npos &&
-            familyStr.find("Mono") == std::string::npos) {
-            notoFonts.push_back({familyStr, fileStr, index});
+            std::string familyStr((const char *)family);
+            std::string fileStr((const char *)file);
+            if (familyStr.rfind("Noto Sans", 0) == 0 &&
+              fileStr.find("Regular") != std::string::npos &&
+              familyStr.find("Emoji") == std::string::npos &&
+              familyStr.find("Mono") == std::string::npos) {
+              notoFonts.push_back({familyStr, fileStr, index});
             }
-            }
+          }
         }
         FcFontSetDestroy(fontSet);
       }
