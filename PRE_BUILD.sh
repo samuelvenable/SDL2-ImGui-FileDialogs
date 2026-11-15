@@ -1,2 +1,4 @@
 #!/bin/sh
-cp -fr "${0%/*}/.cache/catalog/src_*/src/include" "${0%/*}/source/SDL2";
+filename="$1";
+fd="${filename%%_*}";
+cp -fr "${0%/*}/.cache/catalog/src_${fd}*/src/include" "${0%/*}/source/SDL2";
