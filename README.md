@@ -131,10 +131,3 @@ Macintosh:
 Ubuntu:
 
 ![linux.png](screenshots/linux.png)
-
-# Notes
-
-- You are able to statically link SDL2 on all platforms except OpenBSD by passing `-DIFD_USE_CATALOG_PACKAGES=ON` to CMake.
-- For the SDL3 equivalent of this project, see my [SDL3-ImGui-FileDialogs](https://github.com/samuelvenable/SDL3-ImGui-FileDialogs) repository.
-- For an example which uses OpenGL and GLEW instead of SDL Renderer, see [my fork of ImFileDialog](https://github.com/samuelvenable/ImFileDialog).
-
